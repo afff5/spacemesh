@@ -1,5 +1,8 @@
-FROM golang:1.19
-RUN apt update && apt install -y \
+# Use the official Ubuntu 22.04 base image
+FROM ubuntu:22.04
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
     git \
     git-lfs \
     make \
@@ -8,17 +11,18 @@ RUN apt update && apt install -y \
     unzip \
     wget \
     ocl-icd-opencl-dev \
-    ocl-icd-libopencl1
-RUN git-lfs install
-WORKDIR /container
-RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh
-WORKDIR /container/go-spacemesh
-RUN git checkout v1.0.17
-RUN make get-libs
-RUN make install
-RUN make build
-WORKDIR /container/go-spacemesh/build
-RUN wget https://configs.spacemesh.network/config.mainnet.json
-RUN chmod +x go-spacemesh
-EXPOSE 7513
-CMD ./go-spacemesh --config config.mainnet.json --smeshing-opts-provider 4294967295 --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-datadir ./post_data --data-folder ./node_data
+    libudev-dev
+
+# Download and install Go 1.19
+ENV GO_VERSION=1.19
+ENV GO_TAR=go${GO_VERSION}.linux-amd64.tar.gz
+ENV GO_URL=https://golang.org/dl/${GO_TAR}
+RUN wget -q ${GO_URL} && tar -C /usr/local -xzf ${GO_TAR} && rm ${GO_TAR}
+
+# Set Go environment variables
+ENV PATH=/usr/local/go/bin:$PATH
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:$PATH
+
+# Set the working directory to /app
+WORKDIR /app
