@@ -92,7 +92,7 @@
   },
   "logging": {
       "p2p": "error"
-  }
+  },
   
   "smeshing": {
     "smeshing-proving-opts": {
