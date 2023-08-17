@@ -92,5 +92,19 @@
   },
   "logging": {
       "p2p": "error"
+  },
+  
+  "smeshing": {
+    "smeshing-opts": {
+        "smeshing-opts-maxfilesize":34359738368,
+        "smeshing-opts-provider":4294967295,
+        "smeshing-opts-numunits":4,
+        "smeshing-opts-compute-batch-size":1048576
+      },
+    "smeshing-proving-opts": {
+        "smeshing-opts-proving-nonces":144,
+        "smeshing-opts-proving-threads":4
+      }
   }
 }
+
