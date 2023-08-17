@@ -92,12 +92,5 @@
   },
   "logging": {
       "p2p": "error"
-  },
-  "smeshing": {
-    "smeshing-proving-opts": {
-      "smeshing-opts-proving-nonces": 288,
-      "smeshing-opts-proving-threads": 4
-    },
-    "smeshing-start": true
   }
 }
