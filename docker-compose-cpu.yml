@@ -1,0 +1,19 @@
+version: "3"
+services:
+  miner:
+    # build: .
+    image: "spacemeshdemo/spacemesh:latest"
+    privileged: true
+    volumes:
+      - ./node_data:/container/go-spacemesh/build/node_data
+      - ./data:/container/go-spacemesh/build/post_data
+    environment:
+      - SMESHING_COINBASE_ADDRESS=sm1qqqqqq860yhnh47zq2zdhhjzyguzupeflx65f4c2s2p82
+      - FILE_SIZE=34359738368
+      - NUMUNITS=4
+    restart: unless-stopped
+    network_mode: bridge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
