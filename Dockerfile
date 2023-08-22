@@ -1,4 +1,4 @@
-FROM golang:1.19
+FROM golang:1.20
 RUN apt update && apt install -y \
     git \
     git-lfs \
@@ -13,7 +13,7 @@ RUN git-lfs install
 WORKDIR /container
 RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh
 WORKDIR /container/go-spacemesh
-RUN git checkout v1.0.18
+RUN git checkout v1.1.1
 RUN make get-libs
 RUN make install
 RUN make build
