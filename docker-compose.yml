@@ -4,6 +4,8 @@ services:
     # build: .
     image: "spacemeshdemo/spacemesh:latest"
     privileged: true
+    ports:
+      - "1011:1011" 
     volumes:
       - ./node_data:/container/go-spacemesh/build/node_data
       - ./data:/container/go-spacemesh/build/post_data
@@ -11,5 +13,6 @@ services:
       - SMESHING_COINBASE_ADDRESS=sm1qqqqqq...
       - FILE_SIZE=34359738368
       - NUMUNITS=4
+      - METRICPORT=1011
     restart: unless-stopped
     network_mode: bridge
