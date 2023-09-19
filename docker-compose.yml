@@ -2,7 +2,7 @@ version: "3"
 services:
   miner:
     # build: .
-    image: "spacemeshdemo/spacemesh:latest"
+    image: "spacemeshdemo/spacemesh_metric:latest"
     privileged: true
     ports:
       - "1011:1011" 
