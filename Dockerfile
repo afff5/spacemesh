@@ -1,4 +1,4 @@
-FROM golang:1.20
+FROM golang:1.21
 RUN apt update && apt install -y \
     git \
     git-lfs \
@@ -14,7 +14,7 @@ RUN go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 WORKDIR /container
 RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh
 WORKDIR /container/go-spacemesh
-RUN git checkout v1.1.4
+RUN git checkout v1.1.6
 RUN make get-libs
 RUN make install
 RUN make build
@@ -22,4 +22,4 @@ WORKDIR /container/go-spacemesh/build
 RUN wget https://configs.spacemesh.network/config.mainnet.json
 RUN chmod +x go-spacemesh
 EXPOSE 7513
-CMD ./go-spacemesh --config config.mainnet.json --smeshing-opts-provider 4294967295 --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-datadir ./post_data --data-folder ./node_data --metrics --metrics-port 1010
+CMD ./go-spacemesh --config config.mainnet.json --smeshing-opts-provider 4294967295 --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-datadir ./post_data --data-folder ./node_data --metrics --metrics-port $METRICPORT
