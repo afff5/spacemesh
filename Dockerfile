@@ -14,7 +14,7 @@ RUN go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 WORKDIR /container
 RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh
 WORKDIR /container/go-spacemesh
-RUN git checkout v1.1.6
+RUN git checkout v1.1.8
 RUN make get-libs
 RUN make install
 RUN make build
